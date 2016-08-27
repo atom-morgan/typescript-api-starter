@@ -2,6 +2,7 @@ import http from 'http';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import config from './config.json';
 import api from './routes';
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: config.bodyLimit }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+mongoose.Promise = Promise;
 mongoose.connect(config.testDB);
 
 app.get('/', (req, res) => {
