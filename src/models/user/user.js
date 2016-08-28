@@ -18,9 +18,11 @@ UserSchema.pre('save', function(next) {
 });
 
 UserSchema.methods.comparePassword = function(password) {
-  return bcrypt.compare(password, this.password, function(err, res) {
-    if (err) { return err; }
-    return res;
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, this.password, function(err, res) {
+      if (err) { return reject(err); }
+      return resolve(res);
+    });
   });
 };
 
