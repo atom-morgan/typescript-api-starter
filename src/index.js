@@ -8,7 +8,6 @@ import config from './config.json';
 import api from './routes';
 
 let app = express();
-app.server = http.createServer(app);
 
 app.use(cors());
 app.use(bodyParser.json({ limit: config.bodyLimit }));
@@ -22,7 +21,8 @@ app.get('/', (req, res) => {
 });
 app.use('/api', api);
 
-app.server.listen(process.env.PORT || config.port);
-console.log(`Ready on port ${app.server.address().port}`);
+app.set('port', process.env.PORT || config.port);
+http.createServer(app).listen(app.get('port'));
+console.log(`Ready on port ${app.get('port')}`);
 
 export default app;
