@@ -1,2 +1,4 @@
 node_modules/
+typings/
 src/config.json
+built/config.json

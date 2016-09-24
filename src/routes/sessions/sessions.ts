@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import SessionsCtrl from '../../controllers/sessions';
 
 const router = express.Router();

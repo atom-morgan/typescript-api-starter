@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import config from '../../config.json';
+import * as jwt from 'jsonwebtoken';
+let config = require('../../config.json');
 
 const isAuthenticated = function(req, res, next) {
   let token = req.get('Authorization');

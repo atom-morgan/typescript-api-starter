@@ -1,12 +1,12 @@
-import express from 'express';
+import * as express from 'express';
 import Users from './users';
 import Sessions from './sessions';
 
 const router = express.Router();
 
 router.route('/')
-  .get((req, res) => {
-    res.send('Welcome to the API!');
+  .get((req: express.Request, res: express.Response) => {
+    res.send('Welcome to the TypeScript API!');
   });
 
 router.use('/users', Users);

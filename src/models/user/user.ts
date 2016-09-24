@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import Promise from 'bluebird';
+import * as mongoose from 'mongoose';
+import bcrypt = require('bcrypt');
+import Promise = require('bluebird');
 
 const UserSchema = new mongoose.Schema({
   username: { type: String },

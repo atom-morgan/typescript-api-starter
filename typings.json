@@ -1,0 +1,14 @@
+{
+  "globalDependencies": {
+    "bcrypt": "registry:dt/bcrypt#0.0.0+20160316155526",
+    "bluebird": "registry:dt/bluebird#3.0.0+20160907110115",
+    "body-parser": "registry:dt/body-parser#0.0.0+20160619023215",
+    "cors": "registry:dt/cors#0.0.0+20160708202709",
+    "express": "registry:dt/express#4.0.0+20160708185218",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160923124352",
+    "jsonwebtoken": "registry:dt/jsonwebtoken#0.0.0+20160720062725",
+    "mongoose": "registry:dt/mongoose#4.5.9+20160922172925",
+    "node": "registry:dt/node#6.0.0+20160923124626",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
+  }
+}
