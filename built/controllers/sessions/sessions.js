@@ -8,7 +8,6 @@ function create(req, res) {
         if (!user) {
             return res.status(500).json({ error: 'User could not be found ' });
         }
-        console.log('user ', user);
         user.comparePassword(req.body.password)
             .then(function (result) {
             var isValidPassword = result;
