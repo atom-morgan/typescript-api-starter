@@ -4,10 +4,15 @@
     "bluebird": "registry:dt/bluebird#3.0.0+20160907110115",
     "body-parser": "registry:dt/body-parser#0.0.0+20160619023215",
     "cors": "registry:dt/cors#0.0.0+20160708202709",
+    "es6-promise": "registry:dt/es6-promise#0.0.0+20160614011821",
     "express": "registry:dt/express#4.0.0+20160708185218",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160923124352",
     "jsonwebtoken": "registry:dt/jsonwebtoken#0.0.0+20160720062725",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "mongodb": "registry:dt/mongodb#2.1.0+20160602142941",
     "mongoose": "registry:dt/mongoose#4.5.9+20160922172925",
+    "mongoose-promise": "registry:dt/mongoose-promise#4.5.4+20160822161941",
+    "mpromise": "registry:dt/mpromise#0.5.4+20160316155526",
     "node": "registry:dt/node#6.0.0+20160923124626",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   }
