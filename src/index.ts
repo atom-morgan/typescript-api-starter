@@ -7,7 +7,7 @@ import bodyParser = require('body-parser');
 import Promise = require('bluebird');
 import mongoose = require('mongoose');
 import api from './routes';
-let config = require('./config.json');
+const config = require('./config.json');
 
 let app = express();
 
