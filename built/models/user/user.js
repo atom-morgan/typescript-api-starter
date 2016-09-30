@@ -31,4 +31,4 @@ UserSchema.methods.comparePassword = function (password) {
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = mongoose.model('User ', UserSchema);
+exports.default = mongoose.model('User', UserSchema);
