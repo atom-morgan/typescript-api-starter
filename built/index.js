@@ -9,6 +9,9 @@ var mongoose = require('mongoose');
 var routes_1 = require('./routes');
 var config = require('./config.json');
 var app = express();
+if (process.env.NODE_ENV === 'test') {
+    config = require('./dev.json');
+}
 app.use(cors());
 app.use(bodyParser.json({ limit: config.bodyLimit }));
 app.use(bodyParser.urlencoded({ extended: true }));

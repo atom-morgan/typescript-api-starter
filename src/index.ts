@@ -7,9 +7,13 @@ import bodyParser = require('body-parser');
 import Promise = require('bluebird');
 import mongoose = require('mongoose');
 import api from './routes';
-const config = require('./config.json');
+let config = require('./config.json');
 
 let app = express();
+
+if (process.env.NODE_ENV === 'test') {
+  config = require('./dev.json');
+}
 
 app.use(cors());
 app.use(bodyParser.json({ limit: config.bodyLimit }));
