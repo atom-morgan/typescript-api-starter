@@ -1,7 +1,7 @@
 import User from '../../models/user';
 
 function get(req, res) {
-  res.send('GET Users Controller!');
+  res.status(200).json({ message: 'GET Users Controller!' });
 }
 
 function create(req, res) {

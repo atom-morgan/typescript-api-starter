@@ -1,7 +1,7 @@
 "use strict";
 var user_1 = require('../../models/user');
 function get(req, res) {
-    res.send('GET Users Controller!');
+    res.status(200).json({ message: 'GET Users Controller!' });
 }
 function create(req, res) {
     var user = new user_1.default({
