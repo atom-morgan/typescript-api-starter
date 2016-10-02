@@ -1,13 +1,19 @@
-import http from 'http';
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import Promise from 'bluebird';
-import mongoose from 'mongoose';
-import config from './config.json';
+/// <reference path="../typings/index.d.ts" />
+
+import http = require('http');
+import * as express from 'express';
+import cors = require('cors');
+import bodyParser = require('body-parser');
+import Promise = require('bluebird');
+import mongoose = require('mongoose');
 import api from './routes';
+let config = require('./config.json');
 
 let app = express();
+
+if (process.env.NODE_ENV === 'test') {
+  config = require('./dev.json');
+}
 
 app.use(cors());
 app.use(bodyParser.json({ limit: config.bodyLimit }));

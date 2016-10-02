@@ -1,11 +1,11 @@
 import User from '../../models/user';
-import jwt from 'jsonwebtoken';
-import config from '../../config.json';
+import jwt = require('jsonwebtoken');
+let config = require('../../config.json');
 
 function create(req, res) {
   User.findOne({ username: req.body.username }).select('username password')
     .then(function(user) {
-      if (!user) { return res.status(500).json({ error: 'User could not be found '}); }
+      if (!user) { return res.status(500).json({ error: 'User could not be found' }); }
       user.comparePassword(req.body.password)
         .then(function(result) {
           let isValidPassword = result;
