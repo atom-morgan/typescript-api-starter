@@ -2,7 +2,10 @@
 process.env.NODE_ENV = 'test';
 var chai = require('chai');
 var chaiHttp = require('chai-http');
+var spies = require('chai-spies');
 global.chai = chai;
+global.expect = global.chai.expect;
 global.should = global.chai.should();
 global.chaiHttp = chaiHttp;
 chai.use(chaiHttp);
+chai.use(spies);
