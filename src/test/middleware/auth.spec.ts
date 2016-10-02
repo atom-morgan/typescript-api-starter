@@ -17,7 +17,7 @@ describe('Auth middleware', () => {
       url: '/api/users',
       headers: {
         'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkYW0xIiwiaWF0IjoxNDc1MzUwNTA4LCJleHAiOjE0NzU0MzY5MDh9.NcTlsiMVWaIqV4horsqVy6AdoH5rqqIydlaeAk_7mOw'
-      };
+      }
     });
 
     middleware.isAuthenticated(req, res, next)
@@ -51,7 +51,7 @@ describe('Auth middleware', () => {
       url: '/api/users',
       headers: {
         'Authorization': '123'
-      };
+      }
     });
 
     middleware.isAuthenticated(req, res, next)
