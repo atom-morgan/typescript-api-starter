@@ -1,8 +1,9 @@
 import middleware from '../../middleware/auth';
 import * as httpMocks from 'node-mocks-http';
+import Utils from '../utils';
 
 describe('Auth middleware', () => {
-  let req, res, next;
+  let req, res, next, token;
 
   beforeEach((done) => {
     res = httpMocks.createResponse();
@@ -10,13 +11,20 @@ describe('Auth middleware', () => {
     done();
   });
 
+  beforeEach((done) => {
+    Utils.createUserAndGetToken()
+    .then((res) => {
+      token = res.token;
+      done();
+    });
+  });
+
   it('should call next() and set the decoded property on req with a valid token', (done) => {
-    //TODO change this to user+session utility method
     req = httpMocks.createRequest({
       method: 'GET',
       url: '/api/users',
       headers: {
-        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkYW0xIiwiaWF0IjoxNDc1MzUwNTA4LCJleHAiOjE0NzU0MzY5MDh9.NcTlsiMVWaIqV4horsqVy6AdoH5rqqIydlaeAk_7mOw'
+        'Authorization': token
       }
     });
 

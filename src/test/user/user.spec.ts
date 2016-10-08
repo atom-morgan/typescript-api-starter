@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import User from '../../models/user';
 import server from '../../index';
+import Utils from '../utils';
 
 describe('User', () => {
   beforeEach((done) => {
@@ -10,9 +11,20 @@ describe('User', () => {
   });
 
   describe('GET User', () => {
+    let token;
+
+    beforeEach((done) => {
+      Utils.createUserAndGetToken()
+      .then((res) => {
+        token = res.token;
+        done();
+      });
+    });
+
     it('should get a response', (done) => {
       chai.request(server)
         .get('/api/users')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.message.should.eql('GET Users Controller!');

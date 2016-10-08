@@ -1,20 +1,27 @@
 "use strict";
 var auth_1 = require('../../middleware/auth');
 var httpMocks = require('node-mocks-http');
+var utils_1 = require('../utils');
 describe('Auth middleware', function () {
-    var req, res, next;
+    var req, res, next, token;
     beforeEach(function (done) {
         res = httpMocks.createResponse();
         next = chai.spy();
         done();
     });
+    beforeEach(function (done) {
+        utils_1.default.createUserAndGetToken()
+            .then(function (res) {
+            token = res.token;
+            done();
+        });
+    });
     it('should call next() and set the decoded property on req with a valid token', function (done) {
-        //TODO change this to user+session utility method
         req = httpMocks.createRequest({
             method: 'GET',
             url: '/api/users',
             headers: {
-                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkYW0xIiwiaWF0IjoxNDc1MzUwNTA4LCJleHAiOjE0NzU0MzY5MDh9.NcTlsiMVWaIqV4horsqVy6AdoH5rqqIydlaeAk_7mOw'
+                'Authorization': token
             }
         });
         auth_1.default.isAuthenticated(req, res, next)
