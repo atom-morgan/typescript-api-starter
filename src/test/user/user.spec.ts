@@ -4,54 +4,46 @@ import server from '../../index';
 import Utils from '../utils';
 
 describe('User', () => {
-  beforeEach((done) => {
-    User.remove({}, (err) => {
-      done();
-    });
+  beforeEach(() => {
+    return User.remove({});
   });
 
   describe('GET User', () => {
     let token;
 
-    beforeEach((done) => {
-      Utils.createUserAndGetToken()
-      .then((res) => {
+    beforeEach(() => {
+      return Utils.createUserAndGetToken().then((res) => {
         token = res.token;
-        done();
       });
     });
 
-    it('should get a response', (done) => {
-      chai.request(server)
+    it('should get a response', () => {
+      return chai.request(server)
         .get('/api/users')
         .set('Authorization', token)
-        .end((err, res) => {
+        .then((res) => {
           res.should.have.status(200);
           res.body.message.should.eql('GET Users Controller!');
-          done();
         });
     });
   });
 
   describe('POST User', () => {
-    it('should return a user object with a valid username and password', (done) => {
+    it('should return a user object with a valid username and password', () => {
       let user = { username: 'testuser', password: 'password' };
 
-      chai.request(server)
+      return chai.request(server)
         .post('/api/users')
         .send(user)
-        .end((err, res) => {
+        .then((res) => {
           res.should.have.status(200);
           res.body.should.have.property('_id');
           res.body.username.should.eql(user.username);
-          done();
         });
     })
   });
 
-  afterEach((done) => {
-    User.remove({}, (err) => {
-      done();
-    });
+  afterEach(() => {
+    return User.remove({});
   });
 });
