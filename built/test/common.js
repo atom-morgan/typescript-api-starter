@@ -9,6 +9,5 @@ global.expect = global.chai.expect;
 global.should = global.chai.should();
 global.chaiHttp = chaiHttp;
 global.Promise = Promise;
-console.log('promise ', global.Promise);
 chai.use(chaiHttp);
 chai.use(spies);
