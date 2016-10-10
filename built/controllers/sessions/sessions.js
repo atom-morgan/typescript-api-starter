@@ -6,7 +6,7 @@ function create(req, res) {
     user_1.default.findOne({ username: req.body.username }).select('username password')
         .then(function (user) {
         if (!user) {
-            return res.status(500).json({ error: 'User could not be found' });
+            return res.status(404).json({ error: 'User could not be found' });
         }
         user.comparePassword(req.body.password)
             .then(function (result) {

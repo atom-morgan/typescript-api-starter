@@ -16,7 +16,7 @@ describe('Auth middleware', function () {
             done();
         });
     });
-    it('should call next() and set the decoded property on req with a valid token', function (done) {
+    it('should call next() and set the decoded property on req with a valid token', function () {
         req = httpMocks.createRequest({
             method: 'GET',
             url: '/api/users',
@@ -31,10 +31,9 @@ describe('Auth middleware', function () {
             req.decoded.should.have.property('username');
             req.decoded.should.have.property('iat');
             req.decoded.should.have.property('exp');
-            done();
         });
     });
-    it('should return an error if no token is provided', function (done) {
+    it('should return an error if no token is provided', function () {
         req = httpMocks.createRequest({
             method: 'GET',
             url: '/api/users'
@@ -43,10 +42,9 @@ describe('Auth middleware', function () {
             .catch(function () {
             next.should.not.have.been.called();
             res.statusCode.should.eql(403);
-            done();
         });
     });
-    it('should return an error if an invalid token is provided', function (done) {
+    it('should return an error if an invalid token is provided', function () {
         req = httpMocks.createRequest({
             method: 'GET',
             url: '/api/users',
@@ -58,7 +56,6 @@ describe('Auth middleware', function () {
             .catch(function () {
             next.should.not.have.been.called();
             res.statusCode.should.eql(403);
-            done();
         });
     });
 });

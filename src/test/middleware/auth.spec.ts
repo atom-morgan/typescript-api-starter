@@ -19,7 +19,7 @@ describe('Auth middleware', () => {
     });
   });
 
-  it('should call next() and set the decoded property on req with a valid token', (done) => {
+  it('should call next() and set the decoded property on req with a valid token', () => {
     req = httpMocks.createRequest({
       method: 'GET',
       url: '/api/users',
@@ -35,11 +35,10 @@ describe('Auth middleware', () => {
       req.decoded.should.have.property('username');
       req.decoded.should.have.property('iat');
       req.decoded.should.have.property('exp');
-      done();
-    })
+    });
   });
 
-  it('should return an error if no token is provided', (done) => {
+  it('should return an error if no token is provided', () => {
     req = httpMocks.createRequest({
       method: 'GET',
       url: '/api/users'
@@ -49,11 +48,10 @@ describe('Auth middleware', () => {
     .catch(() => {
       next.should.not.have.been.called();
       res.statusCode.should.eql(403);
-      done();
-    })
+    });
   });
 
-  it('should return an error if an invalid token is provided', (done) => {
+  it('should return an error if an invalid token is provided', () => {
     req = httpMocks.createRequest({
       method: 'GET',
       url: '/api/users',
@@ -66,7 +64,6 @@ describe('Auth middleware', () => {
     .catch(() => {
       next.should.not.have.been.called();
       res.statusCode.should.eql(403);
-      done();
     });
   });
 });

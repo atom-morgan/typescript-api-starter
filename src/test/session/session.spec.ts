@@ -3,16 +3,12 @@ import User from '../../models/user';
 import server from '../../index';
 
 describe('Session', () => {
-  beforeEach((done) => {
-    User.remove({}, (err) => {
-      done();
-    });
+  beforeEach(() => {
+    return User.remove({});
   });
 
-  beforeEach((done) => {
-    User.create({ username: 'adam', password: 'password' }, (err, user) => {
-      done();
-    });
+  beforeEach(() => {
+    return User.create({ username: 'adam', password: 'password' });
   })
 
   describe('POST Session', () => {
@@ -20,45 +16,40 @@ describe('Session', () => {
     let invalidUser = { username: 'wrong', password: 'wrong' };
     let invalidPassword = { username: 'adam', password: 'wrong' };
 
-    it('should return a token with a valid username and password', (done) => {
-      chai.request(server)
+    it('should return a token with a valid username and password', () => {
+      return chai.request(server)
         .post('/api/sessions')
         .send(validUser)
-        .end((err, res) => {
+        .then((res) => {
           res.should.have.status(200);
           res.body.should.have.property('token');
-          done();
         });
     });
 
-    it('should return an error with an invalid username', (done) => {
-      chai.request(server)
+    it('should return an error with an invalid username', () => {
+      return chai.request(server)
         .post('/api/sessions')
         .send(invalidUser)
-        .end((err, res) => {
-          res.should.have.status(500);
-          res.body.should.have.property('error');
-          res.body.error.should.eql('User could not be found');
-          done();
+        .catch((err) => {
+          err.response.should.have.status(404);
+          err.response.body.should.have.property('error');
+          err.response.body.error.should.eql('User could not be found');
         });
-    })
+    });
 
-    it('should return an error with an invalid password', (done) => {
-      chai.request(server)
+    it('should return an error with an invalid password', () => {
+      return chai.request(server)
         .post('/api/sessions')
         .send(invalidPassword)
-        .end((err, res) => {
-          res.should.have.status(500);
-          res.body.should.have.property('error');
-          res.body.error.should.eql('Incorrect password');
-          done();
+        .catch((err) => {
+          err.response.should.have.status(500);
+          err.response.body.should.have.property('error');
+          err.response.body.error.should.eql('Incorrect password');
         });
     });
   });
 
-  afterEach((done) => {
-    User.remove({}, (err) => {
-      done();
-    });
+  afterEach(() => {
+    return User.remove({});
   });
 });
