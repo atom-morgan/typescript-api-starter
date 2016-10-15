@@ -1,4 +1,3 @@
-import * as mongoose from 'mongoose';
 import User from '../../models/user';
 import server from '../../index';
 
@@ -9,7 +8,7 @@ describe('Session', () => {
 
   beforeEach(() => {
     return User.create({ username: 'adam', password: 'password' });
-  })
+  });
 
   describe('POST Session', () => {
     let validUser = { username: 'adam', password: 'password' };

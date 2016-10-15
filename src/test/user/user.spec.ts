@@ -1,4 +1,3 @@
-import * as mongoose from 'mongoose';
 import User from '../../models/user';
 import server from '../../index';
 import Utils from '../utils';
@@ -12,8 +11,8 @@ describe('User', () => {
     let token;
 
     beforeEach(() => {
-      return Utils.createUserAndGetToken().then((res) => {
-        token = res.token;
+      return Utils.getUserAndToken().spread((user, session) => {
+        token = session.token;
       });
     });
 
