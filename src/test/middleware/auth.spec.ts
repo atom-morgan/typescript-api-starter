@@ -1,3 +1,4 @@
+import User from '../../models/user';
 import middleware from '../../middleware/auth';
 import * as httpMocks from 'node-mocks-http';
 import Utils from '../utils';
@@ -63,5 +64,9 @@ describe('Auth middleware', () => {
       next.should.not.have.been.called();
       res.statusCode.should.eql(403);
     });
+  });
+
+  after(() => {
+    return User.remove({});
   });
 });
