@@ -3,8 +3,10 @@ import Promise = require('bluebird');
 
 const userCredentials = { username: 'johndoe', password: 'password' };
 
-const createUserAndGetToken = function() {
-  return createUser().then(loginUser);
+const getUserAndToken = function() {
+  return Promise.mapSeries([createUser, loginUser], (func) => {
+    return func();
+  });
 };
 
 function createUser() {
@@ -29,4 +31,4 @@ function loginUser() {
   });
 }
 
-export default { createUserAndGetToken };
+export default { getUserAndToken };
