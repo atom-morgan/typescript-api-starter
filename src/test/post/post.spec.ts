@@ -16,7 +16,6 @@ describe('Post', () => {
     beforeEach(() => {
       return Utils.getUserAndToken().spread((user, session) => {
         myUser = user;
-        // console.log('myUser ', myUser);
         token = session.token;
       });
     });
