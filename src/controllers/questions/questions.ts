@@ -4,9 +4,12 @@ function get(req, res) {
   Question.findOne({ _id: req.params.id })
     .populate('_creator')
     .populate('_post')
-    .exec((err, question) => {
-      if (err) { res.status(404).send(err); }
+    .exec()
+    .then((question) => {
       res.status(200).json(question);
+    })
+    .catch((err) => {
+      res.status(404).send(err);
     });
 }
 

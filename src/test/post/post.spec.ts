@@ -51,6 +51,14 @@ describe('Post', () => {
           res.body._id.should.equal(post._id);
         });
     });
+
+    it('should return a 404 when queried with an invalid ID', () => {
+      return chai.request(server)
+        .get('/api/posts/' + 1337)
+        .catch((err) => {
+          err.should.have.status(404);
+        });
+    });
   });
 
   after(() => {

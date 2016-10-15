@@ -74,7 +74,7 @@ describe('Question', () => {
         });
     });
 
-    it('should return a 4040 with an invalid ID', () => {
+    it('should return a 404 with an invalid ID', () => {
       return chai.request(server)
         .get('/api/questions/' + 1337)
         .catch((res) => {
