@@ -3,7 +3,7 @@ import bcrypt = require('bcrypt');
 import Promise = require('bluebird');
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String },
+  username: { type: String, index: { unique: true } },
   password: { type: String }
 });
 
