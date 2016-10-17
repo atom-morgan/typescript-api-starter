@@ -1,7 +1,18 @@
 import User from '../../models/user';
 
 function get(req, res) {
-  res.status(200).json({ message: 'GET Users Controller!' });
+  User.findOne({ username: req.params.username })
+    .exec()
+    .then((user) => {
+      if (!user) {
+        res.status(404).json({ 'message': 'User does not exist!' });
+      } else {
+        res.status(200).json(user);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
 }
 
 function create(req, res) {
