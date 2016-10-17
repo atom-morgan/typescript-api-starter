@@ -1,7 +1,7 @@
 import Question from '../../models/question';
 
 function get(req, res) {
-  Question.findOne({ _id: req.params.id })
+  Question.findById({ _id: req.params.id })
     .populate('_creator')
     .populate('_post')
     .exec()

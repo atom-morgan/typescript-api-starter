@@ -77,8 +77,8 @@ describe('Question', () => {
     it('should return a 404 with an invalid ID', () => {
       return chai.request(server)
         .get('/api/questions/' + 1337)
-        .catch((res) => {
-          res.should.have.status(404);
+        .catch((err) => {
+          err.should.have.status(404);
         });
     });
   });
