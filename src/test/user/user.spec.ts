@@ -49,7 +49,7 @@ describe('User', () => {
     });
 
     it('should return an error with a password that is too short', () => {
-      let user = { username: 'johndoe', password: 'abc' };
+      let user = { username: 'testuser', password: 'abc' };
 
       return chai.request(server)
         .post('/api/users')

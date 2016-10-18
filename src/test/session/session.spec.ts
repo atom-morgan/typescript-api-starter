@@ -2,11 +2,11 @@ import User from '../../models/user';
 import server from '../../index';
 
 describe('Session', () => {
-  beforeEach(() => {
+  before(() => {
     return User.remove({});
   });
 
-  beforeEach(() => {
+  before(() => {
     return User.create({ username: 'adam', password: 'password' });
   });
 
@@ -48,7 +48,7 @@ describe('Session', () => {
     });
   });
 
-  afterEach(() => {
+  after(() => {
     return User.remove({});
   });
 });

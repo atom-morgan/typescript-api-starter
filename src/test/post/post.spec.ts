@@ -3,7 +3,7 @@ import Utils from '../utils';
 import server from '../../index';
 
 describe('Post', () => {
-  let post;
+  let myPost;
 
   before(() => {
     return Post.remove({});
@@ -13,7 +13,7 @@ describe('Post', () => {
     let token;
     let myUser;
 
-    beforeEach(() => {
+    before(() => {
       return Utils.getUserAndToken().spread((user, session) => {
         myUser = user;
         token = session.token;
@@ -33,7 +33,7 @@ describe('Post', () => {
         .set('Authorization', token)
         .send(payload)
         .then((res) => {
-          post = res.body;
+          myPost = res.body;
           res.should.have.status(200);
           res.body._creator.should.equal(myUser._id);
           res.body.should.have.property('title');
@@ -45,10 +45,10 @@ describe('Post', () => {
   describe('GET Post', () => {
     it('should return a Post object when queried with a given ID', () => {
       return chai.request(server)
-        .get('/api/posts/' + post._id)
+        .get('/api/posts/' + myPost._id)
         .then((res) => {
           res.should.have.status(200);
-          res.body._id.should.equal(post._id);
+          res.body._id.should.equal(myPost._id);
         });
     });
 

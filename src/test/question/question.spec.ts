@@ -12,10 +12,10 @@ describe('Question', () => {
 
   before(() => {
     return Promise.all([
-        User.remove({}),
-        Post.remove({}),
-        Question.remove({})
-      ]);
+      User.remove({}),
+      Post.remove({}),
+      Question.remove({})
+    ]);
   });
 
   before(() => {
@@ -85,9 +85,9 @@ describe('Question', () => {
 
   after(() => {
     return Promise.all([
-        User.remove({}),
-        Post.remove({}),
-        Question.remove({})
-      ]);
+      User.remove({}),
+      Post.remove({}),
+      Question.remove({})
+    ]);
   });
 });
