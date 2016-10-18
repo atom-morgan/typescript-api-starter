@@ -48,6 +48,18 @@ describe('User', () => {
       return user.save();
     });
 
+    it('should return an error with a password that is too short', () => {
+      let user = { username: 'johndoe', password: 'abc' };
+
+      return chai.request(server)
+        .post('/api/users')
+        .send(user)
+        .catch((err) => {
+          err.should.have.status(500);
+          err.response.body.should.have.property('error');
+        });
+    });
+
     it('should return a user object with a valid username and password', () => {
       let user = { username: 'testuser', password: 'password' };
 

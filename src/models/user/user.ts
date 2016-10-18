@@ -4,7 +4,7 @@ import Promise = require('bluebird');
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, index: { unique: true } },
-  password: { type: String, select: false }
+  password: { type: String, minlength: 5, select: false }
 });
 
 UserSchema.pre('save', function(next) {
