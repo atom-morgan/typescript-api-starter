@@ -5,6 +5,7 @@ import auth from '../../middleware/auth';
 const router = express.Router();
 
 router.route('/')
-  .post(auth.isAuthenticated, RelationshipsCtrl.create);
+  .post(auth.isAuthenticated, RelationshipsCtrl.create)
+  .delete(auth.isAuthenticated, RelationshipsCtrl.destroy);
 
 export default router;
