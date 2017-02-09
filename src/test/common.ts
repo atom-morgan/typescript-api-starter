@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'test';
-
 import chai = require('chai');
 import chaiHttp = require('chai-http');
 import spies = require('chai-spies');

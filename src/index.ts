@@ -30,5 +30,6 @@ app.use('/api', api);
 app.set('port', process.env.PORT || config.port);
 http.createServer(app).listen(app.get('port'));
 console.log(`Ready on port ${app.get('port')}`);
+console.log(`Using DB ${config.testDB}`);
 
 export default app;

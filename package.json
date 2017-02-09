@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src\"",
-    "build": "babel src -s -D -d dist",
+    "build": "babel src -s -D -d built",
     "prestart": "npm run -s build",
-    "test": "mocha built/test --opts built/test/mocha.opts"
+    "api": "nodemon built/index.js",
+    "api-test": "npm run test && NODE_ENV=test nodemon built/index.js",
+    "test": "NODE_ENV=test mocha built/test --opts built/test/mocha.opts"
   },
   "author": "",
   "license": "ISC",
