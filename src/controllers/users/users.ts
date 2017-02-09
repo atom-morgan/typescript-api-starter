@@ -26,7 +26,7 @@ function create(req, res) {
       res.status(200).json(user);
     })
     .catch((err) => {
-      res.status(500).json({ error: 'User could not be created. '});
+      res.status(500).json({ error: 'User could not be created.' });
     });
 }
 
