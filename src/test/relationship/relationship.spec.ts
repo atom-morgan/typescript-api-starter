@@ -3,7 +3,7 @@ import Relationship from '../../models/relationship';
 import server from '../../index';
 import Utils from '../utils';
 
-describe.only('Relationship', () => {
+describe('Relationship', () => {
   let follower = {};
   let followed = {};
 
