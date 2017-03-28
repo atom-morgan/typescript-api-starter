@@ -4,15 +4,14 @@ import server from '../../index';
 
 describe('Post', () => {
   let myPost;
+  let token;
+  let myUser;
 
   before(() => {
     return Post.remove({});
   });
 
   describe('POST Post', () => {
-    let token;
-    let myUser;
-
     before(() => {
       return Utils.getUserAndToken().spread((user, session) => {
         myUser = user;
@@ -49,6 +48,23 @@ describe('Post', () => {
         .then((res) => {
           res.should.have.status(200);
           res.body._id.should.equal(myPost._id);
+        });
+    });
+
+    it('should return a list of Post objects for a given user', () => {
+      return chai.request(server)
+        .get('/api/posts/user/' + myUser._id)
+        .then((res) => {
+          res.should.have.status(200);
+          res.body.should.have.length.of.at.least(0);
+        });
+    });
+
+    it('should return a 404 when a list of Post objects doesn\'t exist for a given user', () => {
+      return chai.request(server)
+        .get('/api/posts/user/' + 123123123)
+        .catch((err) => {
+          err.should.have.status(404);
         });
     });
 

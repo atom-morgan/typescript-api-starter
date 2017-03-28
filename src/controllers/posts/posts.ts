@@ -12,6 +12,17 @@ function get(req, res) {
     });
 }
 
+function getByUserId(req, res) {
+  Post.find({ _creator: req.params.id })
+    .exec()
+    .then((posts) => {
+      res.status(200).json(posts);
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+}
+
 function create(req, res) {
   const post = new Post({
     _creator: req.body._creator,
@@ -29,4 +40,4 @@ function create(req, res) {
     });
 }
 
-export default { get, create };
+export default { get, getByUserId, create };
