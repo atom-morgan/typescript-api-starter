@@ -8,6 +8,6 @@ router.route('/')
   .post(UsersCtrl.create);
 
 router.route('/:username')
-  .get(auth.isAuthenticated, UsersCtrl.get);
+  .get(UsersCtrl.get);
 
 export default router;

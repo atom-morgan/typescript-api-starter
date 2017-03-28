@@ -5,7 +5,7 @@ function get(req, res) {
     .exec()
     .then((user) => {
       if (!user) {
-        res.status(404).json({ 'message': 'User does not exist!' });
+        res.status(404).json({ 'resource': 'users', 'message': 'User does not exist!' });
       } else {
         res.status(200).json(user);
       }

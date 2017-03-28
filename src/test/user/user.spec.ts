@@ -8,12 +8,10 @@ describe('User', () => {
   });
 
   describe('GET User', () => {
-    let token;
     let myUser;
 
     before(() => {
       return Utils.getUserAndToken().spread((user, session) => {
-        token = session.token;
         myUser = user;
       });
     });
@@ -21,7 +19,6 @@ describe('User', () => {
     it('should return a User object with a valid username', () => {
       return chai.request(server)
         .get('/api/users/' + myUser.username)
-        .set('Authorization', token)
         .then((res) => {
           res.should.have.status(200);
           res.body.username.should.eql(myUser.username);
@@ -31,9 +28,9 @@ describe('User', () => {
     it('should return a 404 with an invalid username', () => {
       return chai.request(server)
         .get('/api/users/' + 'missingno')
-        .set('Authorization', token)
         .catch((err) => {
           err.should.have.status(404);
+          err.response.body.should.have.property('resource');
           err.response.body.should.have.property('message');
         });
     });
