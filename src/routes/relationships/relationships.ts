@@ -5,7 +5,11 @@ import auth from '../../middleware/auth';
 const router = express.Router();
 
 router.route('/')
-  .post(auth.isAuthenticated, RelationshipsCtrl.create)
+  .post(auth.isAuthenticated, RelationshipsCtrl.create);
+
+router.route('/:username/following/:targetUser')
+  .get(auth.isAuthenticated, RelationshipsCtrl.get)
   .delete(auth.isAuthenticated, RelationshipsCtrl.destroy);
+
 
 export default router;

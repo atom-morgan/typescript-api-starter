@@ -2,6 +2,24 @@ import Relationship from '../../models/relationship';
 import User from '../../models/user';
 import Promise = require('bluebird');
 
+function get(req, res) {
+  return Relationship.findOne({
+    followerId: req.params.username,
+    followedId: req.params.targetUser
+  })
+  .exec()
+  .then((result) => {
+    if (result === null) {
+      res.status(404).json({ message: 'This relationship does not exist!' });
+    } else {
+      res.status(200).json(result);
+    }
+  })
+  .catch((err) => {
+    res.status(500).json(err);
+  });
+}
+
 function create(req, res) {
   const relationship = new Relationship({
     followerId: req.body.followerId,
@@ -17,26 +35,37 @@ function create(req, res) {
       .then((resp) => {
         res.status(200).json(relationship);
       });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message });
     });
 }
 
 function destroy(req, res) {
   return Relationship.findOneAndRemove({
-    followerId: req.body.followerId,
-    followedId: req.body.followedId
+    followerId: req.params.username,
+    followedId: req.params.targetUser
   })
   .exec()
   .then((result) => {
-    return Promise.all([
-      decrementFollowerCount(req.body.followedId),
-      decrementFollowingCount(req.body.followerId)
-    ])
-    .then((resp) => {
+    if (!result) {
+      return result;
+    } else {
+      return Promise.all([
+        decrementFollowerCount(req.params.targetUser),
+        decrementFollowingCount(req.params.username)
+      ]);
+    }
+  })
+  .then((resp) => {
+    if (!resp) {
+      res.status(404).json({ 'resource': 'relationships', 'message': 'This relationship does not exist!' });
+    } else {
       res.status(200).json({ 'message': 'Successfully unfollowed user!' });
-    })
+    }
   })
   .catch((err) => {
-    res.status(500).json({ 'error': 'User does not exist!' });
+    res.status(500).json(err);
   });
 }
 
@@ -68,4 +97,4 @@ function decrementFollowingCount(id) {
   });
 }
 
-export default { create, destroy };
+export default { create, destroy, get };
