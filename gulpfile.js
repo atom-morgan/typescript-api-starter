@@ -16,4 +16,4 @@ gulp.task('move-db-config', function() {
 gulp.task('move-test-config', function() {
   return gulp.src(['./src/test/mocha.opts'])
     .pipe(gulp.dest('built/test'));
-})
+});
