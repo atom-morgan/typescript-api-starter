@@ -83,7 +83,7 @@ describe('User', () => {
     });
   });
 
-  after(() => {
+  afterEach(() => {
     return User.remove({});
   });
 });

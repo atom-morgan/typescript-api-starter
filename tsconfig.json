@@ -1,15 +1,20 @@
 {
-    "files": [
-      "src/index.ts"
-    ],
-    "compilerOptions": {
-        "outDir": "./built",
-        "allowJs": true,
-        "target": "es5",
-        "noImplicitAny": true
-    },
-    "include": [
-        "./src/**/*",
-        "./src/test/**/*"
-    ]
+  "files": [
+    "src/index.ts"
+  ],
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es5",
+    "noImplicitAny": false,
+    "types": [],
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "./src/test/*"
+  ]
 }

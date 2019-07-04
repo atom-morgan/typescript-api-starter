@@ -1,13 +1,15 @@
 import * as mongoose from 'mongoose';
-import bcrypt = require('bcrypt');
+import bcrypt = require('bcryptjs');
 import Promise = require('bluebird');
+import uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, index: { unique: true } },
   password: { type: String, minlength: 5, select: false },
   followingCount: { type: Number, default: 0 },
   followerCount: { type: Number, default: 0 }
-});
+}, {usePushEach: true});
+UserSchema.plugin(uniqueValidator);
 
 UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) { return next(); }
@@ -27,5 +29,15 @@ UserSchema.methods.comparePassword = function(password) {
     });
   });
 };
+
+UserSchema.post('save', (err: any, doc, next) => {
+  if (err.name === 'ValidationError') {
+    next(new Error('User validation failed'));
+  } else if (err.name === 'ValidationError' && err.errors.username && err.errors.username.kind === 'unique') {
+    next(new Error('This user already exists!'));
+  } else {
+    next(err);
+  }
+});
 
 export default mongoose.model('User', UserSchema);

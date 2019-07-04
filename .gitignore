@@ -1,5 +1,4 @@
 node_modules/
-typings/
-src/config.json
-src/dev.json
+src/dev-config.json
+src/test-config.json
 built/
