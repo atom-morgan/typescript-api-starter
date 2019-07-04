@@ -14,7 +14,7 @@ gulp.task('move-dev-config', function() {
 });
 
 gulp.task('move-test-config', function() {
-  return gulp.src(['./src/test/mocha.opts'])
+  return gulp.src(['./src/test/mocha.opts', './src/test/.mocharc.yml'])
     .pipe(gulp.dest('built/test'));
 });
 

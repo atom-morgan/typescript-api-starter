@@ -9,7 +9,7 @@
     "prestart": "npm run -s build",
     "api": "nodemon built/index.js",
     "api-test": "npm run test && NODE_ENV=test nodemon built/index.js",
-    "test": "NODE_ENV=test mocha built/test --opts built/test/mocha.opts"
+    "test": "NODE_ENV=test mocha built/test --config built/test/.mocharc.yml --opts built/test/mocha.opts"
   },
   "author": "",
   "license": "ISC",
@@ -44,7 +44,7 @@
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.1.6",
     "jshint": "^2.9.3",
-    "mocha": "^3.1.0",
+    "mocha": "^6.1.4",
     "node-mocks-http": "^1.5.4",
     "nodemon": "^1.10.2",
     "typescript": "^2.8.1",
