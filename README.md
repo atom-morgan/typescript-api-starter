@@ -25,6 +25,6 @@ Structure:
 
 ### Scripts
 - `gulp`: Compile `/src` (TS) to `/built` (JS)
-- `npm run test`: Run tests using test DB
+- `npm run test`: Run tests using test DB (Remove `"./src/test/*"` from `tsconfig.json` first).
 - `npm run api`: Run API using default DB
 - `npm run api-test`: Clear DB via `npm run test` and then run API on test DB. Use for E2E FE tests that require a fresh DB.
