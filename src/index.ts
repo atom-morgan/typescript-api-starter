@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'test') {
 let app = express();
 
 app.use(cors());
-app.use(bodyParser.json({ limit: config.bodyLimit }));
+app.use(bodyParser.json({ limit: '100kb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const OPTIONS = {
