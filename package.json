@@ -7,7 +7,7 @@
     "postinstall": "gulp",
     "start": "node built/index.js",
     "api-dev": "NODE_ENV=development nodemon built/index.js",
-    "api-test": "npm run test && NODE_ENV=test nodemon built/index.js",
+    "api-test": "NODE_ENV=test nodemon built/index.js",
     "test": "NODE_ENV=test mocha built/test --config built/test/.mocharc.yml --opts built/test/mocha.opts"
   },
   "author": "",

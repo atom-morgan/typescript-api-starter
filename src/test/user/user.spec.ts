@@ -52,8 +52,9 @@ describe('User', () => {
         .post('/api/users')
         .send(user)
         .catch((err) => {
-          err.should.have.status(500);
-          err.response.body.should.have.property('error');
+          err.should.have.status(400);
+          err.response.body.should.have.property('message');
+          err.response.body.message.should.equal('Your password must be at least 5 characters long.');
         });
     });
 
@@ -77,8 +78,9 @@ describe('User', () => {
         .post('/api/users')
         .send(user)
         .catch((err) => {
-          err.should.have.status(500);
-          err.response.body.should.have.property('error');
+          err.should.have.status(400);
+          err.response.body.should.have.property('message');
+          err.response.body.message.should.equal('This user already exists.');
         });
     });
   });

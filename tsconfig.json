@@ -7,7 +7,7 @@
     "allowJs": true,
     "target": "es5",
     "noImplicitAny": false,
-    "types": [],
+    "types": ["mocha", "chai"],
     "skipLibCheck": true
   },
   "include": [

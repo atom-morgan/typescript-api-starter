@@ -31,7 +31,7 @@ UserSchema.methods.comparePassword = function(password) {
 };
 
 UserSchema.post('save', (err: any, doc, next) => {
-  if (err.name === 'ValidationError') {
+  if (err.name === 'ValidationError' && !err.errors.username) {
     next(new Error('User validation failed'));
   } else if (err.name === 'ValidationError' && err.errors.username && err.errors.username.kind === 'unique') {
     next(new Error('This user already exists!'));

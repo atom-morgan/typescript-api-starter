@@ -26,7 +26,13 @@ function create(req, res) {
       res.status(200).json(user);
     })
     .catch((err) => {
-      res.status(500).json({ error: 'User could not be created.' });
+      if (err.message === 'User validation failed') {
+        res.status(400).json({ message: 'Your password must be at least 5 characters long.' });
+      } else if (err.message === 'This user already exists!') {
+        res.status(500).json({ message: 'This user already exists.' });
+      } else {
+        res.status(500).json(err);
+      }
     });
 }
 

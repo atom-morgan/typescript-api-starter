@@ -4,6 +4,7 @@ import Sessions from './sessions';
 import Posts from './posts';
 import Questions from './questions';
 import Relationships from './relationships';
+import Test from './test';
 
 const router = express.Router();
 
@@ -17,5 +18,9 @@ router.use('/sessions', Sessions);
 router.use('/posts', Posts);
 router.use('/questions', Questions);
 router.use('/relationships', Relationships);
+
+if (process.env.NODE_ENV === 'test') {
+  router.use('/test', Test);
+}
 
 export default router;
