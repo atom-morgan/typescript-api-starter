@@ -20,7 +20,7 @@
     "express": "^4.14.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^2.2.8",
-    "mongoose": "^4.5.9",
+    "mongoose": "^4.13.21",
     "mongoose-unique-validator": "2.0.1"
   },
   "devDependencies": {
